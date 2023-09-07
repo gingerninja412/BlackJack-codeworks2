@@ -329,6 +329,7 @@ function selectRandomCard(){
 }
 
 function displayPlayerCard(card){
+    //Takes in the card parameter which is a reference to the deck of cards list with a specific index of the selected card
     let newCard = $("<img>")
     newCard.attr("src", card.image)
     newCard.addClass("card")
@@ -357,6 +358,32 @@ function dealCard (player){
     }
 }
 
+function calculateTotal(hand) {
+    let total = 0;
+    let aces = 0;
+    for(let i = 0; i < hand.length; i++){
+        if(hand[i].value == "ace"){
+            aces += 1
+        } else{
+            total += hand[i].value
+        }
+    }
+    if(aces != 0){
+        if(aces == 1){
+            if(total < 11){
+                total += 11
+            } else{
+                total++
+            }
+        } else if(aces > 1){
+            if(total < 11){
+                total = total + (aces - 1)
+            }
+        }
+    }
+    return total
+}
+
 function startGame(){
     instructions.removeClass("instructionsDown")
     instructions.addClass("instructionsUp")
@@ -366,6 +393,8 @@ function startGame(){
         dealCard(computerHand)
     }
     messageArea.text("You have been dealt two cards choose an option on the left")
+    console.log(`user total: ${calculateTotal(userHand)}`)
+    console.log(`computer total: ${calculateTotal(computerHand)}`)
 }
 
 function help(){
@@ -373,6 +402,12 @@ function help(){
     instructions.addClass("instructionsDown")
     actions.css("display", "none")
     //TODO reset player and computer hands 
+}
+
+function hit(){
+    dealCard(userHand)
+    messageArea.text("You have been dealt a new card")
+    console.log(calculateTotal(userHand))
 }
 
 window.onload = () => {
