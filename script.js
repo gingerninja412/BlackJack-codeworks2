@@ -4,58 +4,68 @@ const deckOfCards = [
     {
         name: "ace of spades",
         value: "ace",
-        picked: false
-        
+        picked: false,
+        image: `images\Ace_of_Spades.png`
     },
     {
         name: "two of spades",
         value: 2,
-        picked: false
+        picked: false,
+        image: `images\Two_of_Spades.png`
     },
     {
         name: "three of spades",
         value: 3,
-        picked: false
+        picked: false,
+        image: `images\Three_of_Spades.png`
     },
     {
         name: "four of spades",
         value: 4,
-        picked: false
+        picked: false,
+        image: `images\Four_of_spades.png`
     },
     {
         name: "five of spades",
         value: 5,
-        picked: false
+        picked: false,
+        image: `images\Five_of_Spades.png`
     },
     {
         name: "six of spades",
         value: 6,
-        picked: false
+        picked: false,
+        image: `images\Six_of_Spades.png`
     },
     {
         name: "seven of spades",
         value: 7,
-        picked: false
+        picked: false,
+        image: `images\Seven_of_Spades.png`
     },
     {
         name: "eight of spades",
         value: 8,
-        picked: false
+        picked: false,
+        image: `images\Eight_of_Spades.png`
     },
     {
         name: "nine of spades",
         value: 9,
-        picked: false
+        picked: false,
+        image: `images\Nine_of_Spades.png`
     },
     {
         name: "ten of spades",
         value: 10,
-        picked: false
+        picked: false,
+        image: `images\Ten_of_Spades.png`
     },
     {
         name: "jack of spades",
         value: 10,
-        picked: false
+        picked: false,
+        image: `images\Jack_of_Spades.png`
     },
     {
         name: "queen of spades",
