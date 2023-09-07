@@ -328,12 +328,17 @@ function selectRandomCard(){
     return deckOfCards[index].name
 }
 
+//The two below functions are to visualise the card on the screen, two functions are used in order to show the users hand face up and the computers hand face down
 function displayPlayerCard(card){
-    //Takes in the card parameter which is a reference to the deck of cards list with a specific index of the selected card
+    //Takes in the card parameter which is a reference to the deck of cards list with a specific index corresponding to a card
     let newCard = $("<img>")
+    // a new image element is created
     newCard.attr("src", card.image)
+    // The source attribute is added with the image path already added to it
     newCard.addClass("card")
+    // The card class is added to it to make it fit into the hand division
     playerHand.append(newCard)
+    // the new card element is added to the hand
 }
 
 function displayComputerHand(){
@@ -341,23 +346,31 @@ function displayComputerHand(){
     newCard.attr("src", String.raw`images\playing_card_back.png`)
     newCard.addClass("card")
     computerArea.append(newCard)
+    //the above function is the same as the one for the player only this one has a hardcoded path
 }
     
-
+//Deals a singular card to the user
 function dealCard (player){
+    //player refers to the hand that the cards are being dealt to
     let index = Math.floor((Math.random() * 52))
+    //generates a random index between one and 52
     while (deckOfCards[index].picked == true){
         index = Math.floor((Math.random() * 52))
     }
+    // checks that the card is not already picked, if it is the process repeats until one is found that has not already been dealt
     player.push(deckOfCards[index])
+    //pushes the card into the hand list of the relevant player
     deckOfCards[index].picked = true
+    //sets the picked flag to true
     if(player == userHand){
         displayPlayerCard(deckOfCards[index])
     } else if(player == computerHand){
         displayComputerHand()
     }
+    //decides where to display the card
 }
 
+//calculates the total value of a hand
 function calculateTotal(hand) {
     let total = 0;
     let aces = 0;
@@ -384,32 +397,45 @@ function calculateTotal(hand) {
     return total
 }
 
+//this function starts the game
 function startGame(){
     instructions.removeClass("instructionsDown")
     instructions.addClass("instructionsUp")
+    //the instructions are animated off the screen
     actions.css("display", "flex")
+    //shoes all of the action buttons
     for(let i = 0; i < 2; i++){
         dealCard(userHand)
         dealCard(computerHand)
     }
+    //Deals two cards to each user
     messageArea.text("You have been dealt two cards choose an option on the left")
+    //Tells the user what has just happened
     console.log(`user total: ${calculateTotal(userHand)}`)
     console.log(`computer total: ${calculateTotal(computerHand)}`)
 }
 
+//This function resets the game and brings back the help prompt
 function help(){
     instructions.removeClass("instructionsUp")
     instructions.addClass("instructionsDown")
+    //animates the instructions back onscreen
     actions.css("display", "none")
+    //removes all of the action buttons
     //TODO reset player and computer hands 
 }
 
+//Deals a card to the user provided the game has not ended
 function hit(){
     dealCard(userHand)
+    //calls the deal card function to deal a card
     messageArea.text("You have been dealt a new card")
+    //tells the user what has just happened
     console.log(calculateTotal(userHand))
 }
 
+
+//This brings down the instructions then the game starts
 window.onload = () => {
     instructions.addClass("instructionsDown")
     actions.css("display", "none")
