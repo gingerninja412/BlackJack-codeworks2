@@ -321,6 +321,7 @@ const instructions = $(".instructions");
 const actions = $(".action");
 const computerArea = $("#computerHand");
 const playerHand = $("#playerHand");
+const messageArea = $("#message")
 
 function selectRandomCard(){
     let index = Math.floor((Math.random() * 52))
@@ -354,7 +355,6 @@ function dealCard (player){
     } else if(player == computerHand){
         displayComputerHand()
     }
-    
 }
 
 function startGame(){
@@ -365,6 +365,7 @@ function startGame(){
         dealCard(userHand)
         dealCard(computerHand)
     }
+    messageArea.text("You have been dealt two cards choose an option on the left")
 }
 
 function help(){
